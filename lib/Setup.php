@@ -73,6 +73,15 @@ class Setup {
 			'before_title'  => '<h3>',
 			'after_title'   => '</h3>',
 		) );
+		register_sidebar( array(
+			'name'          => __( 'Home Page Sidebar', WP_TEXT_DOMAIN ),
+			'id'            => 'sidebar-home',
+			'description'   => __( 'Appears on the main index page only.', WP_TEXT_DOMAIN ),
+			'before_widget' => '<aside id="%1$s" class="%2$s">',
+			'after_widget'  => '</aside>',
+			'before_title'  => '<h3>',
+			'after_title'   => '</h3>',
+		) );
 	}
 
 	public static function menus_init() {

@@ -19,8 +19,6 @@ namespace ObservantRecords\WordPress\Themes\ObservantRecords2015;
 		<div id="footer">
 			<div class="container">
 
-				<?php get_sidebar( 'footer' ); ?>
-
 				<footer>
 					<nav id="footer-column-1" class="col-md-4">
 

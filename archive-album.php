@@ -14,27 +14,11 @@ namespace ObservantRecords\WordPress\Themes\ObservantRecords2015;
 ?>
 <?php get_header(); ?>
 
-	<div class="col-md-8">
+	<div class="col-md-12">
 
 	<?php if ( have_posts() ) : ?>
 		<header>
-			<h2>
-				<?php
-				if ( is_day() ) :
-					printf( __( 'Daily Archives: %s', WP_TEXT_DOMAIN ), get_the_date() );
-
-				elseif ( is_month() ) :
-					printf( __( 'Monthly Archives: %s', WP_TEXT_DOMAIN ), get_the_date( _x( 'F Y', 'monthly archives date format', WP_TEXT_DOMAIN ) ) );
-
-				elseif ( is_year() ) :
-					printf( __( 'Yearly Archives: %s', WP_TEXT_DOMAIN ), get_the_date( _x( 'Y', 'yearly archives date format', WP_TEXT_DOMAIN ) ) );
-
-				else :
-					_e( 'Archives', WP_TEXT_DOMAIN );
-
-				endif;
-				?>
-			</h2>
+			<h2>Releases</h2>
 		</header><!-- .page-header -->
 
 		<?php while ( have_posts() ) : // Start the Loop. ?>
@@ -45,5 +29,4 @@ namespace ObservantRecords\WordPress\Themes\ObservantRecords2015;
 	<?php endif; ?>
 	</div>
 
-<?php get_sidebar(); ?>
 <?php get_footer();
