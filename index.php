@@ -30,5 +30,5 @@ namespace ObservantRecords\WordPress\Themes\ObservantRecords2015;
 		<?php endif; ?>
 	</div>
 
-<?php get_sidebar( 'home' ); ?>
+<?php get_sidebar( ); ?>
 <?php get_footer();
