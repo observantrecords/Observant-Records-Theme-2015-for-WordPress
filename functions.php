@@ -10,6 +10,8 @@
 
 namespace ObservantRecords\WordPress\Themes\ObservantRecords2015;
 
+const WP_TEXT_DOMAIN = 'observantrecords2015';
+
 if (!function_exists( __NAMESPACE__ . '\\autoload' )) {
 	function autoload( $class_name )
 	{

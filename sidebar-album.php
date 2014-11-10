@@ -65,7 +65,7 @@ endif;
 	<ul>
 	<?php foreach ( $release->ecommerce as $ecommerce): ?>
 		<?php if ( $ecommerce->ecommerce_label != 'Observant Records Shop' && $ecommerce->ecommerce_label != 'Bandcamp' ): ?>
-		<li><a href="<?php echo $ecommerce_link->ecommerce_url; ?>"><?php echo $ecommerce->ecommerce_label; ?></a></li>
+		<li><a href="<?php echo $ecommerce->ecommerce_url; ?>"><?php echo $ecommerce->ecommerce_label; ?></a></li>
 		<?php endif; ?>
 	<?php endforeach; ?>
 	</ul>

@@ -8,8 +8,6 @@
 
 namespace ObservantRecords\WordPress\Themes\ObservantRecords2015;
 
-const WP_TEXT_DOMAIN = 'observantrecords2015';
-
 class Setup {
 
 	public function __construct() {
@@ -21,9 +19,13 @@ class Setup {
 
 		add_filter( 'wp_title', array( __CLASS__, 'wp_title' ), 10, 2 );
 
+		add_filter('query_vars', array( __CLASS__, 'query_vars'));
+
 		add_action( 'after_setup_theme', array( __CLASS__, 'after_setup_theme' ) );
 
 		add_action( 'init', array( __CLASS__, 'menus_init' ) );
+
+		add_action( 'init', array( __CLASS__, 'rewrite_init' ) );
 
 		add_action( 'widgets_init', array( __CLASS__, 'widgets_init' ) );
 
@@ -92,8 +94,21 @@ class Setup {
 
 	}
 
+	public static function rewrite_init() {
+
+		add_rewrite_rule( 'audio/([^/]*)', 'index.php?pagename=audio&audio_id=$matches[1]', 'top' );
+
+	}
+
+	public function query_vars( $vars ) {
+
+		$vars[] = 'audio_id';
+		return $vars;
+
+	}
+
 	public static function wp_enqueue_scripts() {
-		wp_enqueue_style( 'musicwhore2014-style', get_stylesheet_uri() );
+		wp_enqueue_style( 'observantrecords2015-style', get_stylesheet_uri() );
 
 		if ( is_singular() && comments_open() && get_option( 'thread_comments' ) ) {
 			wp_enqueue_script( 'comment-reply' );

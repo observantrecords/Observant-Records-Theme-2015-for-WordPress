@@ -22,14 +22,18 @@ $albums = $album_model->getAll( array( 'order_by' => 'album_release_date desc' )
 $artist_model = new Artist();
 $release_model = new Release();
 
+$album_entries = get_posts( array(
+	'post_type' => 'album',
+	'posts_per_page' => -1,
+) );
+
 $album_aliases = array();
-if ( have_posts() ):
-	while ( have_posts() ):
-		the_post();
-		if ( get_post_status() == 'publish' ) :
-			$album_aliases[] = get_post_meta( get_the_ID(), '_ob_album_alias', true );
+if ( count( $album_entries ) > 0 ):
+	foreach ($album_entries as $album_entry):
+		if ( $album_entry->post_status == 'publish' ) :
+			$album_aliases[] = get_post_meta( $album_entry->ID, '_ob_album_alias', true );
 		endif;
-	endwhile;
+	endforeach;
 endif;
 
 ?>
@@ -37,8 +41,7 @@ endif;
 
 	<div class="col-md-12">
 
-	<?php if ( have_posts() ) : ?>
-		<?php the_post(); ?>
+	<?php if ( count( $album_entries ) > 0 ) : ?>
 		<header>
 			<h2>Releases</h2>
 		</header>
