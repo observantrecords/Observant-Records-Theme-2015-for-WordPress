@@ -17,7 +17,7 @@ namespace ObservantRecords\WordPress\Themes\ObservantRecords2015;
 
 	<header>
 		<?php if ( is_single() || is_page() ): ?>
-			<?php echo the_title('<h3 class="entry-title">', '</h3>'); ?>
+			<?php echo the_title('<h2 class="entry-title">', '</h2>'); ?>
 		<?php else: ?>
 			<?php echo the_title('<h3 class="entry-title"><a href="' . esc_url( get_permalink() )  . '" rel="bookmark">', '</a></h3>'); ?>
 		<?php endif; ?>

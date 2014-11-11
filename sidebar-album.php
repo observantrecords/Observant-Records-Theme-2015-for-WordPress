@@ -48,19 +48,28 @@ endif;
 		<a href="<?php echo TemplateTags::get_cdn_uri(); ?>/artists/<?php echo strtolower($release->album->artist->artist_alias); ?>/albums/<?php echo strtolower( $release->album->album_alias ); ?>/<?php echo strtolower( $release->release_catalog_num ); ?>/images/cover_front_large.jpg" rel="facebox" class="smaller">View larger image</a>
 	</p>
 
+	<ul class="list-unstyled">
+		<?php if ( !empty( $release->release_label ) ): ?>
+		<li>Label: <strong><?php echo $release->release_label; ?></li></strong>
+		<?php endif; ?>
+		<?php if ( !empty( $release->release_release_date ) ): ?>
+		<li>Release date: <strong><?php echo date('F d, Y', strtotime( $release->release_release_date ) ); ?></strong></li>
+		<?php endif; ?>
+	</ul>
+
 	<?php if ( count( $release->ecommerce ) > 0): ?>
 	<h3>Buy</h3>
 
-	<p>
+	<ul class="list-inline">
 	<?php foreach ( $release->ecommerce as $ecommerce): ?>
 		<?php if ( $ecommerce->ecommerce_label == 'Observant Records Shop' ): ?>
-		<a href="<?php echo $ecommerce->ecommerce_url; ?>" class="button"><img src="<?php echo TemplateTags::get_cdn_uri(); ?>/web/images/icons/checkout3-grey.gif" /> CD</a>
+		<li><a href="<?php echo $ecommerce->ecommerce_url; ?>" class="button"><img src="<?php echo TemplateTags::get_cdn_uri(); ?>/web/images/icons/checkout3-grey.gif" /> CD</a></li>
 		<?php endif; ?>
 		<?php if ($ecommerce->ecommerce_label == 'Bandcamp' ): ?>
-			<a href="<?php echo $ecommerce->ecommerce_url ?>" class="button"><img src="<?php echo TemplateTags::get_cdn_uri(); ?>/web/images/icons/download-music-grey.gif" /> Digital</a>
+		<li><a href="<?php echo $ecommerce->ecommerce_url ?>" class="button"><img src="<?php echo TemplateTags::get_cdn_uri(); ?>/web/images/icons/download-music-grey.gif" /> Digital</a></li>
 		<?php endif; ?>
 	<?php endforeach; ?>
-	</p>
+	</ul>
 
 	<ul>
 	<?php foreach ( $release->ecommerce as $ecommerce): ?>
