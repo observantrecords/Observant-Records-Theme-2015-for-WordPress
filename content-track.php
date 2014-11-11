@@ -49,10 +49,4 @@ $lyrics = get_post_meta( get_the_ID(), '_ob_track_lyrics', true );
 		<?php echo wpautop( $lyrics ); ?>
 	<?php endif; ?>
 
-	<?php wp_link_pages( array(
-		'before'      => '<div class="page-links"><span class="page-links-title">' . __( 'Pages:', 'musicwhore2014' ) . '</span>',
-		'after'       => '</div>',
-		'link_before' => '<span>',
-		'link_after'  => '</span>',
-	) ); ?>
 </article>
