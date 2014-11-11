@@ -28,10 +28,6 @@ namespace ObservantRecords\WordPress\Themes\ObservantRecords2015;
 					<?php TemplateTags::posted_on(); ?>
 				<?php endif; ?>
 
-				<?php if ( ! post_password_required() && ( comments_open() || get_comments_number() ) ) : ?>
-					<li><span class="glyphicon glyphicon-comment"></span> <?php comments_popup_link( __( 'Leave a comment', WP_TEXT_DOMAIN ), __( '1 Comment', WP_TEXT_DOMAIN ), __( '% Comments', WP_TEXT_DOMAIN ) ); ?></li>
-				<?php endif; ?>
-
 				<?php edit_post_link( __( 'Edit', WP_TEXT_DOMAIN ), '<li><span class="glyphicon glyphicon-pencil"></span>', '</li>' ); ?>
 			</ul>
 		</div>
@@ -39,10 +35,4 @@ namespace ObservantRecords\WordPress\Themes\ObservantRecords2015;
 	</header>
 
 	<?php the_content( __( 'Continue reading &raquo;', WP_TEXT_DOMAIN ) ); ?>
-	<?php wp_link_pages( array(
-		'before'      => '<div class="page-links"><span class="page-links-title">' . __( 'Pages:', 'musicwhore2014' ) . '</span>',
-		'after'       => '</div>',
-		'link_before' => '<span>',
-		'link_after'  => '</span>',
-	) ); ?>
 </article>

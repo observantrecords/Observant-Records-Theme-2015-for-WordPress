@@ -49,7 +49,7 @@ endif;
 		<?php if ( !empty( $albums ) ): ?>
 			<?php $r = 1; ?>
 			<?php foreach ($albums as $album): ?>
-				<?php if (false !== ( array_search( $album->album_alias, $album_aliases ) )): ?>
+				<?php if ( ( false !== ( array_search( $album->album_alias, $album_aliases ) ) ) && (boolean) $album->album_is_visible === true ): ?>
 					<?php $album->release = $release_model->get( $album->album_primary_release_id ); ?>
 					<?php $album->artist = $artist_model->get( $album->album_artist_id ); ?>
 					<?php $cover_url_base = TemplateTags::get_cdn_uri() . '/artists/' . $album->artist->artist_alias . '/albums/' . $album->album_alias . '/' . strtolower($album->release->release_catalog_num) . '/images'; ?>
