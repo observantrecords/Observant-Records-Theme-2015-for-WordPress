@@ -12,7 +12,22 @@
 
 namespace ObservantRecords\WordPress\Themes\ObservantRecords2015;
 
+use ObservantRecords\WordPress\Plugins\ArtistConnector\Models\Audio;
+use ObservantRecords\WordPress\Plugins\ArtistConnector\Models\Track;
+
 $lyrics = get_post_meta( get_the_ID(), '_ob_track_lyrics', true );
+$track_alias = get_post_meta( get_the_ID(), '_ob_track_alias', true );
+
+if ( !empty( $track_alias ) ):
+	$track_model = new Track();
+	$track = $track_model->getBy( 'track_alias', $track_alias );
+
+	if ( !empty( $track->track_recording_id ) && (boolean) $track->track_audio_is_linked === true ):
+		$audio_model = new Audio();
+		$track->audio = $audio_model->getRecordingFiles( $track->track_recording_id );
+	endif;
+endif;
+
 
 ?>
 
@@ -20,7 +35,7 @@ $lyrics = get_post_meta( get_the_ID(), '_ob_track_lyrics', true );
 
 	<header>
 		<?php if ( is_single() || is_page() ): ?>
-			<?php echo the_title('<h3 class="entry-title">', '</h3>'); ?>
+			<?php echo the_title('<h2 class="entry-title">', '</h2>'); ?>
 		<?php else: ?>
 			<?php echo the_title('<h3 class="entry-title"><a href="' . esc_url( get_permalink() )  . '" rel="bookmark">', '</a></h3>'); ?>
 		<?php endif; ?>
@@ -38,6 +53,17 @@ $lyrics = get_post_meta( get_the_ID(), '_ob_track_lyrics', true );
 	</header>
 
 	<?php if ( get_the_content() != '' ): ?>
+		<?php if ( !empty( $track->audio ) ): ?>
+
+			<h3>Listen</h3>
+
+			<audio id="track-<?php echo $track->track_recording_id; ?>" controls>
+				<?php foreach ($track->audio as $audio): ?>
+					<source src="/audio/<?php echo $audio->audio_id; ?>/" type="<?php echo $audio->audio_file_type;?>" />
+				<?php endforeach; ?>
+			</audio>
+		<?php endif; ?>
+
 		<h3>About this track</h3>
 
 		<?php the_content( __( 'Continue reading &raquo;', WP_TEXT_DOMAIN ) ); ?>
