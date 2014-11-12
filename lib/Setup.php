@@ -45,8 +45,6 @@ class Setup {
 	}
 
 	public static function widgets_init() {
-//	require get_template_directory() . '/inc/widgets.php';
-//	register_widget( 'Musicwhore2014_Ephemera_Widget' );
 
 		register_sidebar( array(
 			'name'          => __( 'Primary Sidebar', WP_TEXT_DOMAIN ),
@@ -88,6 +86,15 @@ class Setup {
 			'name'          => __( 'About Page Sidebar', WP_TEXT_DOMAIN ),
 			'id'            => 'sidebar-about',
 			'description'   => __( 'Appears on the About page only.', WP_TEXT_DOMAIN ),
+			'before_widget' => '<aside id="%1$s" class="%2$s">',
+			'after_widget'  => '</aside>',
+			'before_title'  => '<h3>',
+			'after_title'   => '</h3>',
+		) );
+		register_sidebar( array(
+			'name'          => __( 'Contact Page Sidebar', WP_TEXT_DOMAIN ),
+			'id'            => 'sidebar-contact',
+			'description'   => __( 'Appears on the Contact page only.', WP_TEXT_DOMAIN ),
 			'before_widget' => '<aside id="%1$s" class="%2$s">',
 			'after_widget'  => '</aside>',
 			'before_title'  => '<h3>',
