@@ -65,7 +65,7 @@ endif;
 				</p>
 
 				<ul class="release-list-info">
-					<li><strong><a href="releases/<?php echo $album->album_alias; ?>"><?php echo $album->album_title; ?></a></strong></li>
+					<li><strong><a href="/releases/<?php echo $album->album_alias; ?>"><?php echo $album->album_title; ?></a></strong></li>
 					<li><?php echo $album->artist->artist_display_name; ?></li>
 				</ul>
 			</div>

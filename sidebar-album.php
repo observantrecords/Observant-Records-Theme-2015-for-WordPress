@@ -62,11 +62,8 @@ endif;
 
 	<ul class="list-inline">
 	<?php foreach ( $release->ecommerce as $ecommerce): ?>
-		<?php if ( $ecommerce->ecommerce_label == 'Observant Records Shop' ): ?>
+		<?php if ( $ecommerce->ecommerce_label == 'Bandcamp' ): ?>
 		<li><a href="<?php echo $ecommerce->ecommerce_url; ?>" class="button"><img src="<?php echo TemplateTags::get_cdn_uri(); ?>/web/images/icons/checkout3-grey.gif" /> CD</a></li>
-		<?php endif; ?>
-		<?php if ($ecommerce->ecommerce_label == 'Bandcamp' ): ?>
-		<li><a href="<?php echo $ecommerce->ecommerce_url ?>" class="button"><img src="<?php echo TemplateTags::get_cdn_uri(); ?>/web/images/icons/download-music-grey.gif" /> Digital</a></li>
 		<?php endif; ?>
 	<?php endforeach; ?>
 	</ul>
