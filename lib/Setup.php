@@ -30,6 +30,8 @@ class Setup {
 		add_action( 'widgets_init', array( __CLASS__, 'widgets_init' ) );
 
 		add_action( 'wp_enqueue_scripts', array( __CLASS__, 'wp_enqueue_scripts' ) );
+
+		add_action( 'wp_enqueue_scripts', array( __CLASS__, 'wp_enqueue_styles'), 20);
 	}
 
 	public static function after_setup_theme() {
@@ -124,12 +126,21 @@ class Setup {
 	}
 
 	public static function wp_enqueue_scripts() {
-		wp_enqueue_style( 'observantrecords2015-style', get_stylesheet_uri() );
-
 		if ( is_singular() && comments_open() && get_option( 'thread_comments' ) ) {
 			wp_enqueue_script( 'comment-reply' );
 		}
 
+		wp_enqueue_script( 'bootstrap-js', '//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js', array( 'jquery' ) );
+		wp_enqueue_script( 'facebox-js', TemplateTags::get_cdn_uri() . '/web/js/facebox.js' );
+		wp_enqueue_script( 'observantrecords2015-js', get_stylesheet_directory_uri() . '/js/observantrecords2015.js', array( 'jquery', 'facebox-js' ) );
+	}
+
+	public static function wp_enqueue_styles() {
+		wp_enqueue_style( 'bootstrap', '//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css' );
+		wp_enqueue_style( 'observantrecords2015-style', get_stylesheet_uri() );
+		wp_enqueue_style( 'observantrecords2015-typography', get_stylesheet_directory_uri() . '/css/typography.css' );
+		wp_enqueue_style( 'observantrecords2015-layout', get_stylesheet_directory_uri() . '/css/layout.css' );
+		wp_enqueue_style( 'facebox', TemplateTags::get_cdn_uri() . '/web/css/facebox.css' );
 	}
 
 	public static function wp_page_menu_args( $args ) {
