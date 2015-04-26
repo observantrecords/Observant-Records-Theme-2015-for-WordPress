@@ -118,7 +118,7 @@ class Setup {
 
 	}
 
-	public function query_vars( $vars ) {
+	public static function query_vars( $vars ) {
 
 		$vars[] = 'audio_id';
 		return $vars;
