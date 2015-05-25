@@ -48,13 +48,13 @@ endif;
 
 		<?php if ( !empty( $albums ) ): ?>
 			<?php $r = 1; ?>
+			<div class="row">
 			<?php foreach ($albums as $album): ?>
 				<?php if ( ( false !== ( array_search( $album->album_alias, $album_aliases ) ) ) && (boolean) $album->album_is_visible === true ): ?>
 					<?php $album->release = $release_model->get( $album->album_primary_release_id ); ?>
 					<?php $album->artist = $artist_model->get( $album->album_artist_id ); ?>
 					<?php $cover_url_base = TemplateTags::get_cdn_uri() . '/artists/' . $album->artist->artist_alias . '/albums/' . $album->album_alias . '/' . strtolower($album->release->release_catalog_num) . '/images'; ?>
 					<?php if ($r % 4 == 0):?>
-		<div class="row">
 					<?php endif; ?>
 			<div class="col-md-3">
 
@@ -64,17 +64,19 @@ endif;
 					</a>
 				</p>
 
-				<ul class="release-list-info">
+				<ul class="list-unstyled">
 					<li><strong><a href="/releases/<?php echo $album->album_alias; ?>"><?php echo $album->album_title; ?></a></strong></li>
 					<li><?php echo $album->artist->artist_display_name; ?></li>
 				</ul>
 			</div>
 					<?php if ($r % 4 == 0):?>
 		</div>
+		<div class="row">
 					<?php endif; ?>
 					<?php $r++; ?>
 				<?php endif; ?>
 			<?php endforeach; ?>
+			</div>
 		<?php endif; ?>
 
 	<?php endif; ?>
