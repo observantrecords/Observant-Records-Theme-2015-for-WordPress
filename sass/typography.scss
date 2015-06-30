@@ -32,28 +32,26 @@
 	font-style: italic, oblique;
 }
 
+body {
+	font-family: $font-family-base;
+	font-size: $font-base-size;
+	line-height: $line-height-base;
+}
+
 a {
 	color: $dark-blue;
-}
-
-body {
-}
-
-a:hover {
-	color: $dark-red-brown;
+	&:hover {
+		color: $dark-red-brown;
+	}
 }
 
 h1, h2, h3, h4, h5, h6 {
-	font-family: 'Helvetica', 'Arial', sans-serif;
+	font-family: $font-family-base;
 }
 
 #nav-header ul.links {
 	font-family: 'CartoGothicStd', 'Helvetica', 'Arial', sans-serif;
 	font-size: 120%;
-}
-
-#page-title {
-	font-family: 'CartoGothicStd', 'Helvetica', 'Arial', sans-serif;
 }
 
 #title {
@@ -78,32 +76,6 @@ input[type=text], input[type=password], input[type=email], select, textarea {
 	font-family: inherit;
 }
 
-.form_hidden {
-	display: none;
-}
-
-.smaller {
-	font-size: smaller;
-}
-
 table.track-table {
-	font-family: 'Helvetica', 'Arial', sans-serif;
-}
-
-.button {
-	font-size: 120%;
-	text-decoration: none;
-	color: #FFF;
-}
-
-.button:hover {
-	color: #FFF;
-}
-
-.submitted {
-	font-style: italic;
-}
-
-.node h3 a {
-	text-decoration: none;
+	font-family: $font-family-base;
 }

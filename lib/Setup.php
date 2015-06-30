@@ -136,6 +136,7 @@ class Setup {
 	}
 
 	public static function wp_enqueue_styles() {
+		wp_enqueue_style( 'google-font-fira-sans', '//fonts.googleapis.com/css?family=Fira+Sans:400,700,400italic,700italic' );
 		wp_enqueue_style( 'bootstrap', '//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css' );
 		wp_enqueue_style( 'observantrecords2015-style', get_stylesheet_uri() );
 		wp_enqueue_style( 'facebox', TemplateTags::get_cdn_uri() . '/web/css/facebox.css' );
