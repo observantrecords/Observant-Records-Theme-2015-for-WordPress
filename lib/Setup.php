@@ -138,8 +138,6 @@ class Setup {
 	public static function wp_enqueue_styles() {
 		wp_enqueue_style( 'bootstrap', '//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css' );
 		wp_enqueue_style( 'observantrecords2015-style', get_stylesheet_uri() );
-		wp_enqueue_style( 'observantrecords2015-typography', get_stylesheet_directory_uri() . '/css/typography.css' );
-		wp_enqueue_style( 'observantrecords2015-layout', get_stylesheet_directory_uri() . '/css/layout.css' );
 		wp_enqueue_style( 'facebox', TemplateTags::get_cdn_uri() . '/web/css/facebox.css' );
 	}
 
