@@ -1,0 +1,46 @@
+/*
+Theme Name: Observant Records 2015
+Author: Greg Bueno
+Author URI: http://vigilantmedia.com/
+Description: A WordPress theme customized for Observant Records.
+Version: 1.0
+Text Domain: observantrecords2015
+*/
+
+@import "variables.scss";
+@import "layout.scss";
+@import "typography.scss";
+
+.site-info {
+	padding-bottom: 1em;
+}
+
+.comment-list {
+	list-style: none;
+	padding-bottom: 1em;
+}
+
+.comment-author {
+	position: relative;
+	.avatar {
+		height: 34px;
+		top: 2px;
+		width: 34px;
+		border: 1px solid rgba(0, 0, 0, 0.1);
+		padding: 2px;
+		position: absolute;
+		left: 0;
+	}
+}
+
+.comment-author, .comment-awaiting-moderation, .comment-content, .comment-list .reply, .comment-metadata {
+	padding-left: 50px;
+}
+
+.comments-title {
+	padding-bottom: 1em;
+}
+
+.says {
+	display: none;
+}
