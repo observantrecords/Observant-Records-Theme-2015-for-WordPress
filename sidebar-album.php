@@ -45,7 +45,7 @@ endif;
 	</p>
 
 	<p>
-		<a href="<?php echo TemplateTags::get_cdn_uri(); ?>/artists/<?php echo strtolower($release->album->artist->artist_alias); ?>/albums/<?php echo strtolower( $release->album->album_alias ); ?>/<?php echo strtolower( $release->release_catalog_num ); ?>/images/cover_front_large.jpg" rel="facebox" class="smaller">View larger image</a>
+		<a href="<?php echo TemplateTags::get_cdn_uri(); ?>/artists/<?php echo strtolower($release->album->artist->artist_alias); ?>/albums/<?php echo strtolower( $release->album->album_alias ); ?>/<?php echo strtolower( $release->release_catalog_num ); ?>/images/cover_front_large.jpg" rel="facebox" class="small">View larger image</a>
 	</p>
 
 	<ul class="list-unstyled">
@@ -58,17 +58,17 @@ endif;
 	</ul>
 
 	<?php if ( count( $release->ecommerce ) > 0): ?>
-	<h3>Buy</h3>
-
 	<ul class="list-inline">
 	<?php foreach ( $release->ecommerce as $ecommerce): ?>
 		<?php if ( $ecommerce->ecommerce_label == 'Bandcamp' ): ?>
-		<li><a href="<?php echo $ecommerce->ecommerce_url; ?>" class="button"><img src="<?php echo TemplateTags::get_cdn_uri(); ?>/web/images/icons/checkout3-grey.gif" /> CD</a></li>
+		<li><a href="<?php echo $ecommerce->ecommerce_url; ?>" class="btn btn-primary btn-lg"><span class="glyphicon glyphicon-shopping-cart"></span> Buy now</a></li>
 		<?php endif; ?>
 	<?php endforeach; ?>
 	</ul>
 
-	<ul>
+	<h4>Also available from:</h4>
+
+		<ul>
 	<?php foreach ( $release->ecommerce as $ecommerce): ?>
 		<?php if ( $ecommerce->ecommerce_label != 'Observant Records Shop' && $ecommerce->ecommerce_label != 'Bandcamp' ): ?>
 		<li><a href="<?php echo $ecommerce->ecommerce_url; ?>"><?php echo $ecommerce->ecommerce_label; ?></a></li>
