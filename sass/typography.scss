@@ -1,0 +1,81 @@
+/*
+    Document   : typography
+    Created on : Nov 11, 2011, 7:56:20 AM
+    Author     : Greg Bueno
+    Description:
+        Purpose of the stylesheet follows.
+*/
+
+@mixin default-font {
+	font-family: "CartoGothicStd";
+	src: url("assets/fonts/CartoGothicStd-Book-webfont.eot");
+	src: url("assets/fonts/CartoGothicStd-Book-webfont.eot?iefix") format("eot"),
+	url("assets/fonts/CartoGothicStd-Book-webfont.woff") format("woff"),
+	url("assets/fonts/CartoGothicStd-Book-webfont.ttf") format("truetype"),
+	url("assets/fonts/CartoGothicStd-Book-webfont.svg#webfont") format("svg");
+}
+
+@font-face {
+	@include default-font;
+}
+@font-face {
+  @include default-font;
+	font-style: italic, oblique;
+}
+@font-face {
+	@include default-font;
+	font-weight: bold;
+}
+@font-face {
+	@include default-font;
+	font-weight: bold;
+	font-style: italic, oblique;
+}
+
+body {
+	font-family: $font-family-base;
+	font-size: $font-base-size;
+	line-height: $line-height-base;
+}
+
+a {
+	color: $dark-blue;
+	&:hover {
+		color: $dark-red-brown;
+	}
+}
+
+h1, h2, h3, h4, h5, h6 {
+	font-family: $font-family-base;
+}
+
+#nav-header ul.links {
+	font-family: 'CartoGothicStd', 'Helvetica', 'Arial', sans-serif;
+	font-size: 120%;
+}
+
+#title {
+	font-family: 'Lucida Sans Unicode', sans-serif;
+	a {
+		text-decoration: none;
+		color: #000;
+	}
+}
+
+footer {
+	color: #000;
+	font-size: 95%;
+}
+
+#masthead a, #masthead a:hover {
+	color: #FFF;
+}
+
+input[type=text], input[type=password], input[type=email], select, textarea {
+	font-size: 100%;
+	font-family: inherit;
+}
+
+table.track-table {
+	font-family: $font-family-base;
+}
