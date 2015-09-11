@@ -32,6 +32,8 @@ class Setup {
 		add_action( 'wp_enqueue_scripts', array( __CLASS__, 'wp_enqueue_scripts' ) );
 
 		add_action( 'wp_enqueue_scripts', array( __CLASS__, 'wp_enqueue_styles'), 20);
+
+		add_shortcode( 'mailchimp', array( __CLASS__, 'mailchimp_shortcode') );
 	}
 
 	public static function after_setup_theme() {
@@ -165,6 +167,66 @@ class Setup {
 		}
 
 		return $title;
+	}
+
+	public static function mailchimp_shortcode() {
+		$output = <<< OUTPUT
+<!-- Begin MailChimp Signup Form -->
+<form action="//observantrecords.us11.list-manage.com/subscribe/post?u=a04e90fa99b1b93d418f4ae9d&amp;id=8a11bbe4d2" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="form-horizontal" target="_blank">
+<div class="form-group">
+	<label for="mce-EMAIL" class="control-label col-sm-3">Email Address</label>
+	<div class="col-sm-9">
+		<input type="email" value="" name="EMAIL" class="form-control" id="mce-EMAIL">
+	</div>
+</div>
+<div class="form-group">
+	<label for="mce-FNAME" class="control-label col-sm-3">First Name</label>
+	<div class="col-sm-9">
+		<input type="text" value="" name="FNAME" class="form-control" id="mce-FNAME">
+	</div>
+</div>
+<div class="form-group">
+	<label for="mce-LNAME" class="control-label">Last Name</label>
+	<div class="col-sm-9">
+		<input type="text" value="" name="LNAME" class="form-control" id="mce-LNAME">
+	</div>
+</div>
+<div class="form-group">
+    <p>
+    	I want to get news about ...
+	</p>
+
+	<label for="mce-group[7993]-7993-0">
+		<input type="checkbox" value="1" name="group[7993][1]" id="mce-group[7993]-7993-0" />
+		Eponymous 4
+	</label>
+	<label for="mce-group[7993]-7993-1">
+		<input type="checkbox" value="2" name="group[7993][2]" id="mce-group[7993]-7993-1" />
+		Empty Ensemble
+	</label>
+	<label for="mce-group[7993]-7993-2">
+		<input type="checkbox" value="4" name="group[7993][4]" id="mce-group[7993]-7993-2" />
+		Penzias and Wilson
+	</label>
+</div>
+<div class="form-group">
+    <strong>Email Format </strong>
+    <ul><li><input type="radio" value="html" name="EMAILTYPE" id="mce-EMAILTYPE-0"><label for="mce-EMAILTYPE-0">html</label></li>
+<li><input type="radio" value="text" name="EMAILTYPE" id="mce-EMAILTYPE-1"><label for="mce-EMAILTYPE-1">text</label></li>
+</ul>
+</div>
+	<div id="mce-responses" class="clear">
+		<div class="response" id="mce-error-response" style="display:none"></div>
+		<div class="response" id="mce-success-response" style="display:none"></div>
+	</div>    <!-- real people should not fill this in and expect good things - do not remove this or risk form bot signups-->
+    <div style="position: absolute; left: -5000px;"><input type="text" name="b_a04e90fa99b1b93d418f4ae9d_8a11bbe4d2" tabindex="-1" value=""></div>
+    <div class="clear"><input type="submit" value="Subscribe" name="subscribe" id="mc-embedded-subscribe" class="button"></div>
+    </div>
+</form>
+
+<!--End mc_embed_signup-->
+OUTPUT;
+
 	}
 
 
