@@ -169,65 +169,159 @@ class Setup {
 		return $title;
 	}
 
-	public static function mailchimp_shortcode() {
+	public static function mailchimp_shortcode( $attributes ) {
+		$input = shortcode_atts([
+			'group' => 'all',
+			'size' => 'full',
+		], $attributes);
+
+		return ($input['size'] !== 'full') ? Setup::mailchimp_short_form( $input['group'] ) : Setup::mailchimp_full_form( $input['group'] );
+	}
+
+	private static function mailchimp_full_form( $group = 'all')
+	{
+		$group_output = Setup::mailchimp_group_input( $group );
 		$output = <<< OUTPUT
 <!-- Begin MailChimp Signup Form -->
-<form action="//observantrecords.us11.list-manage.com/subscribe/post?u=a04e90fa99b1b93d418f4ae9d&amp;id=8a11bbe4d2" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="form-horizontal" target="_blank">
-<div class="form-group">
-	<label for="mce-EMAIL" class="control-label col-sm-3">Email Address</label>
-	<div class="col-sm-9">
-		<input type="email" value="" name="EMAIL" class="form-control" id="mce-EMAIL">
+<form action="//observantrecords.us11.list-manage.com/subscribe/post?u=a04e90fa99b1b93d418f4ae9d&amp;id=8a11bbe4d2" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" target="_blank">
+	<div class="form-group">
+		<label for="mce-EMAIL">Email Address (required)</label>
+		<input type="email" value="" name="EMAIL" class="form-control" id="mce-EMAIL" required="true">
 	</div>
-</div>
-<div class="form-group">
-	<label for="mce-FNAME" class="control-label col-sm-3">First Name</label>
-	<div class="col-sm-9">
+	<div class="form-group">
+		<label for="mce-FNAME">First Name</label>
 		<input type="text" value="" name="FNAME" class="form-control" id="mce-FNAME">
 	</div>
-</div>
-<div class="form-group">
-	<label for="mce-LNAME" class="control-label">Last Name</label>
-	<div class="col-sm-9">
+	<div class="form-group">
+		<label for="mce-LNAME">Last Name</label>
 		<input type="text" value="" name="LNAME" class="form-control" id="mce-LNAME">
 	</div>
-</div>
-<div class="form-group">
-    <p>
-    	I want to get news about ...
+
+	$group_output
+
+	<p>
+		Please format my e-mail as ...
 	</p>
 
-	<label for="mce-group[7993]-7993-0">
-		<input type="checkbox" value="1" name="group[7993][1]" id="mce-group[7993]-7993-0" />
-		Eponymous 4
-	</label>
-	<label for="mce-group[7993]-7993-1">
-		<input type="checkbox" value="2" name="group[7993][2]" id="mce-group[7993]-7993-1" />
-		Empty Ensemble
-	</label>
-	<label for="mce-group[7993]-7993-2">
-		<input type="checkbox" value="4" name="group[7993][4]" id="mce-group[7993]-7993-2" />
-		Penzias and Wilson
-	</label>
-</div>
-<div class="form-group">
-    <strong>Email Format </strong>
-    <ul><li><input type="radio" value="html" name="EMAILTYPE" id="mce-EMAILTYPE-0"><label for="mce-EMAILTYPE-0">html</label></li>
-<li><input type="radio" value="text" name="EMAILTYPE" id="mce-EMAILTYPE-1"><label for="mce-EMAILTYPE-1">text</label></li>
-</ul>
-</div>
+	<div class="radio">
+		<label for="mce-EMAILTYPE-0">
+			<input type="radio" value="html" name="EMAILTYPE" id="mce-EMAILTYPE-0" checked>
+			HTML
+		</label>
+	</div>
+	<div class="radio">
+		<label for="mce-EMAILTYPE-1">
+			<input type="radio" value="text" name="EMAILTYPE" id="mce-EMAILTYPE-1">
+			Text
+		</label>
+	</div>
+
 	<div id="mce-responses" class="clear">
 		<div class="response" id="mce-error-response" style="display:none"></div>
 		<div class="response" id="mce-success-response" style="display:none"></div>
-	</div>    <!-- real people should not fill this in and expect good things - do not remove this or risk form bot signups-->
+	</div>
+	<!-- real people should not fill this in and expect good things - do not remove this or risk form bot signups-->
     <div style="position: absolute; left: -5000px;"><input type="text" name="b_a04e90fa99b1b93d418f4ae9d_8a11bbe4d2" tabindex="-1" value=""></div>
-    <div class="clear"><input type="submit" value="Subscribe" name="subscribe" id="mc-embedded-subscribe" class="button"></div>
+
+    <div class="form-group">
+    	<input type="submit" value="Subscribe" name="subscribe" id="mc-embedded-subscribe" class="btn btn-primary btn-lg">
     </div>
 </form>
 
 <!--End mc_embed_signup-->
 OUTPUT;
-
+		return $output;
 	}
 
+	private static function mailchimp_short_form( $group = 'all')
+	{
+		$group_output = Setup::mailchimp_group_input( $group, 'short' );
+		$output = <<< OUTPUT
+<!-- Begin MailChimp Signup Form -->
+<form action="//observantrecords.us11.list-manage.com/subscribe/post?u=a04e90fa99b1b93d418f4ae9d&amp;id=8a11bbe4d2" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" target="_blank">
+	<div class="form-group">
+		<label for="mce-EMAIL">Email Address</label>
+		<input type="email" value="" name="EMAIL" class="form-control" id="mce-EMAIL" required="true">
+	</div>
+
+	$group_output
+
+	<div id="mce-responses" class="clear">
+		<div class="response" id="mce-error-response" style="display:none"></div>
+		<div class="response" id="mce-success-response" style="display:none"></div>
+	</div>
+	<!-- real people should not fill this in and expect good things - do not remove this or risk form bot signups-->
+    <div style="position: absolute; left: -5000px;"><input type="text" name="b_a04e90fa99b1b93d418f4ae9d_8a11bbe4d2" tabindex="-1" value=""></div>
+
+    <div class="form-group">
+    	<input type="submit" value="Subscribe" name="subscribe" id="mc-embedded-subscribe" class="btn btn-primary">
+    </div>
+</form>
+
+<!--End mc_embed_signup-->
+OUTPUT;
+		return $output;
+	}
+
+	private function mailchimp_group_input( $group = 'all', $size = null )
+	{
+		if ( $group != 'all') {
+			switch ( $group ) {
+				case 'empty_ensemble':
+					$output = <<< EMPTY_ENSEMBLE
+	<input type="hidden" value="1" name="group[7993][2]" id="mce-group[7993]-7993-1" />
+EMPTY_ENSEMBLE;
+
+					break;
+				case 'penzias_and_wilson':
+					$output = <<< PENZIAS_AND_WILSON
+	<input type="hidden" value="1" name="group[7993][4]" id="mce-group[7993]-7993-2" />
+PENZIAS_AND_WILSON;
+					break;
+				default: // Always Eponymous 4
+					$output = <<< EPONYMOUS_4
+	<input type="hidden" value="1" name="group[7993][1]" id="mce-group[7993]-7993-0" />
+EPONYMOUS_4;
+
+			}
+
+		} else {
+			if ($size == 'short')
+			{
+				$output = <<< SHORT
+	<input type="hidden" value="1" name="group[7993][1]" id="mce-group[7993]-7993-0" />
+	<input type="hidden" value="1" name="group[7993][2]" id="mce-group[7993]-7993-1" />
+	<input type="hidden" value="1" name="group[7993][4]" id="mce-group[7993]-7993-2" />
+SHORT;
+			} else {
+				$output = <<< FULL
+	<p>
+		I want to get news about ...
+	</p>
+
+	<div class="checkbox">
+		<label for="mce-group[7993]-7993-0">
+			<input type="checkbox" value="1" name="group[7993][1]" id="mce-group[7993]-7993-0" checked />
+			Eponymous 4
+		</label>
+	</div>
+	<div class="checkbox">
+		<label for="mce-group[7993]-7993-1">
+			<input type="checkbox" value="2" name="group[7993][2]" id="mce-group[7993]-7993-1" checked />
+			Empty Ensemble
+		</label>
+	</div>
+	<div class="checkbox">
+		<label for="mce-group[7993]-7993-2">
+			<input type="checkbox" value="4" name="group[7993][4]" id="mce-group[7993]-7993-2" checked />
+			Penzias and Wilson
+		</label>
+	</div>
+FULL;
+			}
+		}
+
+		return $output;
+	}
 
 }

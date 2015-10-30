@@ -62,16 +62,19 @@ ul#nav-social {
 footer {
   margin-top: 1em; }
 
+/*
 label {
-  float: left;
-  font-weight: bold;
-  width: 150px;
-  margin-right: 10px; }
+	float: left;
+	font-weight: bold;
+	width: 150px;
+	margin-right: 10px;
+}
 
 label.error, span.error {
-  color: #F99;
-  display: none; }
-
+	color: #F99;
+	display: none;
+}
+*/
 input[type=text], input[type=password], input[type=email], select, textarea {
   border: 1px solid #402C29;
   border-radius: 3px;
