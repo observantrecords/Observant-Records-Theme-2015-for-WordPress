@@ -172,10 +172,10 @@ class Setup {
 	public static function mailchimp_shortcode( $attributes ) {
 		$input = shortcode_atts([
 			'group' => 'all',
-			'size' => 'full',
+			'size' => null,
 		], $attributes);
 
-		return ($input['size'] !== 'full') ? Setup::mailchimp_short_form( $input['group'] ) : Setup::mailchimp_full_form( $input['group'] );
+		return ($input['size'] == 'short') ? Setup::mailchimp_short_form( $input['group'] ) : Setup::mailchimp_full_form( $input['group'] );
 	}
 
 	private static function mailchimp_full_form( $group = 'all')
@@ -263,7 +263,7 @@ OUTPUT;
 		return $output;
 	}
 
-	private function mailchimp_group_input( $group = 'all', $size = null )
+	private static function mailchimp_group_input( $group = 'all', $size = null )
 	{
 		if ( $group != 'all') {
 			switch ( $group ) {
