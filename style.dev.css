@@ -100,13 +100,13 @@ table.track-table {
     border: 0;
     display: block; }
 
-@media screen and (min-width: 750px) {
+@media screen and (max-width: 768px) {
   #observant-records-logo {
     width: 100%; }
 
   #home-slider {
-    display: none; }
-
+    display: none; } }
+@media screen and (min-width: 750px) {
   #nav-header {
     padding: 1em 0 1em 0;
     text-align: left; }
