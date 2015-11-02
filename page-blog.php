@@ -33,7 +33,7 @@ $blog_posts = get_posts();
 			<?php setup_postdata( $blog_post ); ?>
 			<?php get_template_part( 'content', get_post_format( $blog_post ) ); ?>
 		<?php endforeach; ?>
-		<?php TemplateTags::paging_nav(); ?>
+		<?php TemplateTags::paging_nav( $blog_posts ); ?>
 	<?php endif; ?>
 	</div>
 
