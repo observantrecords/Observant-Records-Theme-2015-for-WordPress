@@ -26,7 +26,9 @@ namespace ObservantRecords\WordPress\Themes\ObservantRecords2015;
 				<?php the_post(); ?>
 				<?php get_template_part( 'content', get_post_format() ); ?>
 			<?php endwhile; ?>
-			<?php TemplateTags::paging_nav(); ?>
+			<?php if ( is_home() === false): ?>
+				<?php TemplateTags::paging_nav(); ?>
+			<?php endif; ?>
 		<?php endif; ?>
 	</div>
 
