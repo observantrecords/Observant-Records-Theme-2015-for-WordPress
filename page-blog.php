@@ -1,4 +1,8 @@
 <?php
+/*
+Template Name: Blog Archive
+ */
+
 /**
  * Created by PhpStorm.
  * User: gregbueno
