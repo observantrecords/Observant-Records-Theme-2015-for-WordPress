@@ -26,15 +26,6 @@ Text Domain: observantrecords2015
 #observant-records-logo {
   width: 470px; }
 
-#nav-header {
-  padding-top: 1.5em;
-  text-align: center; }
-  #nav-header ul.links li {
-    display: inline-block;
-    margin: 0;
-    padding: 0;
-    margin-left: 24px; }
-
 ul#nav-social {
   margin-top: 20px;
   padding-left: 0;
@@ -114,11 +105,17 @@ table.track-table {
     width: 100%; }
 
   #home-slider {
-    display: none; }
-
+    display: none; } }
+@media screen and (min-width: 750px) {
   #nav-header {
     padding: 1em 0 1em 0;
-    text-align: left; } }
+    text-align: left; }
+
+  #nav-header ul.links li {
+    display: inline-block;
+    margin: 0;
+    padding: 0;
+    margin-left: 24px; } }
 /*
     Document   : typography
     Created on : Nov 11, 2011, 7:56:20 AM

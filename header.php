@@ -21,7 +21,7 @@ namespace ObservantRecords\WordPress\Themes\ObservantRecords2015;
 		<title><?php wp_title( '|', true, 'right' ); ?></title>
 		<link rel="profile" href="http://gmpg.org/xfn/11">
 		<link rel="pingback" href="<?php bloginfo( 'pingback_url' ); ?>">
-		<link rel="icon" href="<?php echo get_template_directory_uri(); ?>/favicon.ico" type="image/x-icon">
+		<link rel="icon" href="<?php echo get_template_directory_uri(); ?>/favicon.png" type="image/x-icon">
 		<?php wp_head(); ?>
 		<!--[if lt IE 9]>
 		<script src="<?php echo get_template_directory_uri(); ?>/js/html5.js"></script>
