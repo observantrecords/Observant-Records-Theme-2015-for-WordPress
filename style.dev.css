@@ -3,7 +3,7 @@ Theme Name: Observant Records 2015
 Author: Greg Bueno
 Author URI: http://vigilantmedia.com/
 Description: A WordPress theme customized for Observant Records.
-Version: 2.0
+Version: 2.2.3
 Text Domain: observantrecords2015
 */
 /*
@@ -149,7 +149,7 @@ body {
   line-height: 1.53061; }
 
 a {
-  color: #304B75; }
+  color: #5483CC; }
   a:hover {
     color: #402C29; }
 
@@ -169,6 +169,11 @@ h1, h2, h3, h4, h5, h6 {
 footer {
   color: #000;
   font-size: 95%; }
+  footer a {
+    color: #304B75;
+    text-decoration: underline; }
+    footer a:hover {
+      text-decoration: none; }
 
 #masthead a, #masthead a:hover {
   color: #FFF; }
