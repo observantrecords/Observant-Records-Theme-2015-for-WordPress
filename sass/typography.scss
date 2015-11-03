@@ -42,7 +42,7 @@ body {
 }
 
 a {
-  color: $dark-blue;
+  color: $light-blue;
   &:hover {
     color: $dark-red-brown;
   }
@@ -68,6 +68,13 @@ h1, h2, h3, h4, h5, h6 {
 footer {
   color: #000;
   font-size: 95%;
+  a {
+    color: $dark-blue;
+    text-decoration: underline;
+    &:hover {
+      text-decoration: none;
+    }
+  }
 }
 
 #masthead a, #masthead a:hover {
