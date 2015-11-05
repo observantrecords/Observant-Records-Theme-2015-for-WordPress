@@ -31,7 +31,7 @@ $blog_posts = get_posts();
 		<?php foreach ( $blog_posts as $p => $blog_post ) : ?>
 			<?php $post = $blog_post; ?>
 			<?php setup_postdata( $blog_post ); ?>
-			<?php get_template_part( 'content', get_post_format( $blog_post ) ); ?>
+			<?php get_template_part( 'content', 'blog-index' ); ?>
 		<?php endforeach; ?>
 		<?php TemplateTags::paging_nav( $blog_posts ); ?>
 	<?php endif; ?>
