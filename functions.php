@@ -30,3 +30,4 @@ if (!function_exists( __NAMESPACE__ . '\\autoload' )) {
 
 spl_autoload_register(__NAMESPACE__ . '\\autoload');
 Setup::init();
+MailChimpShortcode::init();

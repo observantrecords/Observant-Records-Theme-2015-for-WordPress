@@ -16,25 +16,23 @@ Template Name: Blog Archive
 
 namespace ObservantRecords\WordPress\Themes\ObservantRecords2015;
 
-global $post;
-$blog_posts = get_posts();
+$blog_query = new \WP_Query( [ 'post_type' => 'post' ] );
+
+add_action('loop_start', array( 'ObservantRecords\WordPress\Themes\ObservantRecords2015\Setup', 'jetpack_remove_share'));
 ?>
 <?php get_header(); ?>
 
 	<div class="col-md-8">
 
-	<?php if ( ( $post_count = count( $blog_posts ) ) > 0 ) : ?>
 		<header>
 			<h2>Blog</h2>
 		</header><!-- .page-header -->
 
-		<?php foreach ( $blog_posts as $p => $blog_post ) : ?>
-			<?php $post = $blog_post; ?>
-			<?php setup_postdata( $blog_post ); ?>
-			<?php get_template_part( 'content', get_post_format( $blog_post ) ); ?>
-		<?php endforeach; ?>
-		<?php TemplateTags::paging_nav( $blog_posts ); ?>
-	<?php endif; ?>
+	<?php while ( $blog_query->have_posts() ): ?>
+		<?php $blog_query->the_post(); ?>
+		<?php get_template_part( 'content', 'blog-index' ); ?>
+	<?php endwhile; ?>
+	<?php TemplateTags::paging_nav(); ?>
 	</div>
 
 <?php get_sidebar(); ?>
