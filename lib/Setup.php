@@ -141,7 +141,7 @@ class Setup
 
 		wp_enqueue_script('bootstrap-js', '//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js', array('jquery'));
 		wp_enqueue_script('facebox-js', TemplateTags::get_cdn_uri() . '/web/js/facebox.js');
-		wp_enqueue_script('observantrecords2015-js', get_template_directory_uri() . '/js/observantrecords2015.js', array('jquery', 'facebox-js'));
+		wp_enqueue_script('observantrecords2015-js', get_template_directory_uri() . '/assets/js/observantrecords2015.js', array('jquery', 'facebox-js'));
 	}
 
 	public static function wp_enqueue_styles()
