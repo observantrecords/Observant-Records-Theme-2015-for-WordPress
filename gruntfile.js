@@ -8,11 +8,11 @@ module.exports = function(grunt) {
                     style: 'compressed'
                 },
                 files: {
-                    'style.css': 'sass/style.scss'				}
+                    'style.css': 'assets/sass/style.scss'				}
             },
             development: {
                 files: {
-                    'style.dev.css': 'sass/style.scss'
+                    'style.dev.css': 'assets/sass/style.scss'
                 }
             }
         }
