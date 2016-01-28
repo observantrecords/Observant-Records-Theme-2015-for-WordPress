@@ -21,6 +21,9 @@ $release = null;
 $release_alias = get_post_meta( get_the_ID(), '_ob_release_alias', true );
 $release_credits = get_post_meta( get_the_ID(), '_ob_release_credits', true );
 
+$ecommerce_buy_now = null;
+$ecommerce_also_available = [];
+
 if ( !empty( $release_alias ) ):
 	$release_model = new Release();
 	$release = $release_model->getBy( 'release_alias', $release_alias );
@@ -32,6 +35,16 @@ if ( !empty( $release_alias ) ):
 		$release->album->artist = $artist_model->get( $release->album->album_artist_id );
 		$ecommerce_model = new Ecommerce();
 		$release->ecommerce = $ecommerce_model->getManyBy( 'ecommerce_release_id', $release->release_id );
+
+		if ( count( $release->ecommerce ) > 0):
+			foreach ( $release->ecommerce as $ecommerce):
+				if ( $ecommerce->ecommerce_label == 'Bandcamp' ):
+					$ecommerce_buy_now = $ecommerce;
+				else:
+					$ecommerce_also_available[] = $ecommerce;
+				endif;
+			endforeach;
+		endif;
 	}
 endif;
 
@@ -57,23 +70,21 @@ endif;
 		<?php endif; ?>
 	</ul>
 
-	<?php if ( count( $release->ecommerce ) > 0): ?>
+	<?php if ( !empty( $ecommerce_buy_now ) ): ?>
 	<ul class="list-inline">
-	<?php foreach ( $release->ecommerce as $ecommerce): ?>
-		<?php if ( $ecommerce->ecommerce_label == 'Bandcamp' ): ?>
-		<li><a href="<?php echo $ecommerce->ecommerce_url; ?>" class="btn btn-primary btn-lg"><span class="glyphicon glyphicon-shopping-cart"></span> Buy now</a></li>
-		<?php endif; ?>
-	<?php endforeach; ?>
+		<li><a href="<?php echo $ecommerce_buy_now->ecommerce_url; ?>" class="btn btn-primary btn-lg"><span class="glyphicon glyphicon-shopping-cart"></span> Buy now</a></li>
 	</ul>
+	<?php endif; ?>
 
+	<?php if ( count($ecommerce_also_available) > 0): ?>
 	<h4>Also available from:</h4>
 
-		<ul>
-	<?php foreach ( $release->ecommerce as $ecommerce): ?>
-		<?php if ( $ecommerce->ecommerce_label != 'Observant Records Shop' && $ecommerce->ecommerce_label != 'Bandcamp' ): ?>
+	<ul>
+		<?php foreach ( $ecommerce_also_available as $ecommerce ): ?>
+			<?php if ( $ecommerce->ecommerce_label != 'Observant Records Shop' && $ecommerce->ecommerce_label != 'Bandcamp' ): ?>
 		<li><a href="<?php echo $ecommerce->ecommerce_url; ?>"><?php echo $ecommerce->ecommerce_label; ?></a></li>
-		<?php endif; ?>
-	<?php endforeach; ?>
+			<?php endif; ?>
+		<?php endforeach; ?>
 	</ul>
 	<?php endif; ?>
 
