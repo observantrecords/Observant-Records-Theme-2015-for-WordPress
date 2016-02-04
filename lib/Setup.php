@@ -26,6 +26,8 @@ class Setup
 
 		add_filter('metaslider_resized_image_url', array(__CLASS__, 'metaslider_protocol_relative_urls'));
 
+		add_filter('wp_calculate_image_srcset', array(__CLASS__, 'image_srcset_protocol_relative_urls'));
+
 		add_action('after_setup_theme', array(__CLASS__, 'after_setup_theme'));
 
 		add_action('init', array(__CLASS__, 'menus_init'));
@@ -192,6 +194,15 @@ class Setup
 
 	public static function metaslider_protocol_relative_urls($cropped_url, $orig_url = null) {
 		return str_replace('http://', '//', $cropped_url);
+	}
+
+	public static function image_srcset_protocol_relative_urls( $sources ) {
+		foreach ( $sources as $s => $source ) {
+			if ( isset( $source['url'] ) ) {
+				$sources[$s]['url'] = set_url_scheme( $source['url'], null);
+			}
+		}
+		return $sources;
 	}
 
 }
