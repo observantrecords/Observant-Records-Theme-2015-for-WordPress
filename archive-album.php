@@ -12,15 +12,9 @@
 
 namespace ObservantRecords\WordPress\Themes\ObservantRecords2015;
 
-use ObservantRecords\WordPress\Plugins\ArtistConnector\Models\Album;
-use ObservantRecords\WordPress\Plugins\ArtistConnector\Models\Artist;
-use ObservantRecords\WordPress\Plugins\ArtistConnector\Models\Release;
+use ObservantRecords\WordPress\Plugins\ArtistConnector\Eloquent\Models\Album;
 
-$album_model = new Album();
-$albums = $album_model->getAll( array( 'order_by' => 'album_release_date desc' ) );
-
-$artist_model = new Artist();
-$release_model = new Release();
+$albums = Album::with('artist', 'primary_release')->orderBy('album_release_date', 'desc')->get();
 
 $album_entries = get_posts( array(
 	'post_type' => 'album',
@@ -51,9 +45,7 @@ endif;
 			<div class="row">
 			<?php foreach ($albums as $album): ?>
 				<?php if ( ( false !== ( array_search( $album->album_alias, $album_aliases ) ) ) && (boolean) $album->album_is_visible === true ): ?>
-					<?php $album->release = $release_model->get( $album->album_primary_release_id ); ?>
-					<?php $album->artist = $artist_model->get( $album->album_artist_id ); ?>
-					<?php $cover_url_base = TemplateTags::get_cdn_uri() . '/artists/' . $album->artist->artist_alias . '/albums/' . $album->album_alias . '/' . strtolower($album->release->release_catalog_num) . '/images'; ?>
+					<?php $cover_url_base = TemplateTags::get_cdn_uri() . '/artists/' . $album->artist->artist_alias . '/albums/' . $album->album_alias . '/' . strtolower($album->primary_release->release_catalog_num) . '/images'; ?>
 					<?php if ($r % 4 == 0):?>
 					<?php endif; ?>
 			<div class="col-md-3">

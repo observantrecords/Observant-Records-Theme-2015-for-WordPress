@@ -12,10 +12,7 @@
 
 namespace ObservantRecords\WordPress\Themes\ObservantRecords2015;
 
-use ObservantRecords\WordPress\Plugins\ArtistConnector\Models\Album;
-use ObservantRecords\WordPress\Plugins\ArtistConnector\Models\Artist;
-use ObservantRecords\WordPress\Plugins\ArtistConnector\Models\Ecommerce;
-use ObservantRecords\WordPress\Plugins\ArtistConnector\Models\Release;
+use ObservantRecords\WordPress\Plugins\ArtistConnector\Eloquent\Models\Release;
 
 $release = null;
 $release_alias = get_post_meta( get_the_ID(), '_ob_release_alias', true );
@@ -25,16 +22,13 @@ $ecommerce_buy_now = null;
 $ecommerce_also_available = [];
 
 if ( !empty( $release_alias ) ):
-	$release_model = new Release();
-	$release = $release_model->getBy( 'release_alias', $release_alias );
+	$release = Release::with('album.artist', 'ecommerce')->with([
+		'ecommerce' => function ( $query ) {
+			$query->orderBy('ecommerce_list_order');
+		}
+	])->where('release_alias', $release_alias)->first();
 
-	if (!empty ($release ) ) {
-		$album_model = new Album();
-		$release->album = $album_model->get( $release->release_album_id );
-		$artist_model = new Artist();
-		$release->album->artist = $artist_model->get( $release->album->album_artist_id );
-		$ecommerce_model = new Ecommerce();
-		$release->ecommerce = $ecommerce_model->getManyBy( 'ecommerce_release_id', $release->release_id );
+	if ( !empty ($release ) ) {
 
 		if ( count( $release->ecommerce ) > 0):
 			foreach ( $release->ecommerce as $ecommerce):
