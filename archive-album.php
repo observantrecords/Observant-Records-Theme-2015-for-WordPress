@@ -12,7 +12,7 @@
 
 namespace ObservantRecords\WordPress\Themes\ObservantRecords2015;
 
-use ObservantRecords\WordPress\Plugins\ArtistConnector\Eloquent\Models\Album;
+use ObservantRecords\WordPress\Plugins\ArtistConnector\Models\Albums\Album;
 
 $albums = Album::with('artist', 'primary_release')->orderBy('album_release_date', 'desc')->get();
 

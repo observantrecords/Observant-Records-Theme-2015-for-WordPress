@@ -12,20 +12,14 @@
 
 namespace ObservantRecords\WordPress\Themes\ObservantRecords2015;
 
-use ObservantRecords\WordPress\Plugins\ArtistConnector\Models\Audio;
-use ObservantRecords\WordPress\Plugins\ArtistConnector\Models\Track;
+use ObservantRecords\WordPress\Plugins\ArtistConnector\Models\Albums\Track;
 
 $lyrics = get_post_meta( get_the_ID(), '_ob_track_lyrics', true );
 $track_alias = get_post_meta( get_the_ID(), '_ob_track_alias', true );
 
+$track = null;
 if ( !empty( $track_alias ) ):
-	$track_model = new Track();
-	$track = $track_model->getBy( 'track_alias', $track_alias );
-
-	if ( !empty( $track->track_recording_id ) && (boolean) $track->track_audio_is_linked === true ):
-		$audio_model = new Audio();
-		$track->audio = $audio_model->getRecordingFiles( $track->track_recording_id );
-	endif;
+	$track = Track::with('recording.audio')->where( 'track_alias', $track_alias )->get();
 endif;
 
 
@@ -53,12 +47,12 @@ endif;
 	</header>
 
 	<?php if ( get_the_content() != '' ): ?>
-		<?php if ( !empty( $track->audio ) ): ?>
+		<?php if ( !empty( $track->recording->audio ) ): ?>
 
 			<h3>Listen</h3>
 
 			<audio id="track-<?php echo $track->track_recording_id; ?>" controls>
-				<?php foreach ($track->audio as $audio): ?>
+				<?php foreach ($track->recording->audio as $audio): ?>
 					<source src="/audio/<?php echo $audio->audio_id; ?>/" type="<?php echo $audio->audio_file_type;?>" />
 				<?php endforeach; ?>
 			</audio>

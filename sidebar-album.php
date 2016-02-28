@@ -12,7 +12,7 @@
 
 namespace ObservantRecords\WordPress\Themes\ObservantRecords2015;
 
-use ObservantRecords\WordPress\Plugins\ArtistConnector\Eloquent\Models\Release;
+use ObservantRecords\WordPress\Plugins\ArtistConnector\Models\Albums\Release;
 
 $release = null;
 $release_alias = get_post_meta( get_the_ID(), '_ob_release_alias', true );
@@ -22,7 +22,7 @@ $ecommerce_buy_now = null;
 $ecommerce_also_available = [];
 
 if ( !empty( $release_alias ) ):
-	$release = Release::with('album.artist', 'ecommerce')->with([
+	$release = Release::with('album.artist')->with([
 		'ecommerce' => function ( $query ) {
 			$query->orderBy('ecommerce_list_order');
 		}
