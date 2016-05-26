@@ -3,7 +3,7 @@ Theme Name: Observant Records 2015
 Author: Greg Bueno
 Author URI: http://vigilantmedia.com/
 Description: A WordPress theme customized for Observant Records.
-Version: 2.4
+Version: 2.5
 Text Domain: observantrecords2015
 */
 /*
@@ -49,6 +49,9 @@ ul#nav-social {
 
 #album_player {
   margin: 0 0 1em; }
+
+iframe {
+  margin-bottom: 10px; }
 
 footer {
   margin-top: 1em; }
